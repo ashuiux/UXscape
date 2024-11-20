@@ -57,6 +57,13 @@ Choosing the right research method for a UX project can be challenging and time-
 ## Data Structure
 
 ### Research Method Example
+{
+  "id": 1,
+  "name": "User Interviews",
+  "description": "A method to gather qualitative insights directly from users.",
+  "useCases": ["Early discovery", "Identifying user pain points"],
+  "projectTypes": ["Exploratory", "Validating ideas"]
+}
 
 # Endpoints
 

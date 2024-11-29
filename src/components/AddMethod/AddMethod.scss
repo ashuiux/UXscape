@@ -1,0 +1,96 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.form
+{
+    background-color: $biege;
+    padding: $padding-16  $padding-32  $padding-32 $padding-32;
+    margin-top: 2rem;
+    border-radius: 1rem 1rem 0 1rem;
+}
+
+
+.add-method-form {
+  display: flex;
+  flex-direction: column; 
+  gap: $padding-16; 
+  padding: $padding-8; 
+  background-color: $biege ;
+  margin-top: 2rem;
+
+  label {
+    display: flex;
+    flex-direction: column; 
+    color: $dark-brown; 
+    font-size: 1rem;
+    font-weight: bold;
+
+    input, 
+    textarea, 
+    select {
+      margin-top: $padding-8;
+      padding: $padding-16;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      color: $dark-brown;
+      background-color: $off-white;
+
+      &:focus {
+        outline: 2px solid $green; 
+        border-color: $green;
+      }
+    }
+
+    .error {
+      border-color: $light-green;
+      background-color: lighten($light-green, 30%);
+    }
+
+    .error-text {
+      margin-top: $padding-8;
+      font-size: 0.875rem;
+      color: $brown;
+    }
+  }
+
+  button {
+    align-self: flex-start; 
+    padding: $padding-16 $padding-32; 
+    font-size: 1rem;
+    font-weight: bold;
+    color: $off-white;
+    background-color: $green;
+    border: none;
+    border-radius: .25rem;
+    width: 100%;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $light-green;
+    }
+
+    &:active {
+      background-color: darken($green, 10%);
+    }
+  }
+
+  @include tablet {
+    flex-direction: row; 
+    flex-wrap: wrap;
+
+    label {
+      flex: 1 1 calc(50% - $padding-16); 
+    }
+
+    button {
+      align-self: center;
+    }
+  }
+
+  @include desktop {
+    label {
+      flex: 1 1 calc(33.33% - $padding-16); 
+    }
+  }
+}

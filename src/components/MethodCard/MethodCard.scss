@@ -1,0 +1,45 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.method-card {
+  @for $i from 1 through 50 {
+    &:nth-child(#{$i}) {
+      @include rotate-color($i);
+    }
+  }
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: $padding-16;
+  border-radius: 1rem 1rem 0 1rem;
+
+  h2 {
+    margin: 0 0 0.5rem;
+    color: $dark-brown; 
+  }
+
+  p {
+    color: $dark-brown; 
+  }
+  &__header {
+    padding-top: $padding-16;
+  }
+  &__tags {
+    margin-top: 1rem;
+  }
+
+  &__usecase {
+    border-bottom: 1px solid $dark-brown;
+    padding: $padding-8;
+  }
+
+  &__project {
+    border-bottom: 1px solid $dark-brown;
+    padding: $padding-8;
+  }
+
+  &__designs {
+    padding: $padding-8;
+  }
+}

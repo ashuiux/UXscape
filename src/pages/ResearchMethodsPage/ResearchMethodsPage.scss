@@ -1,0 +1,139 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.research-methods {
+    padding: 2rem;
+  
+    h1 {
+      margin-bottom: 1.5rem;
+    }
+  
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+  
+    .methods-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+  }
+
+ 
+
+
+  .toggle-bar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: $padding-32;
+  
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 40%; // Width adjusted for labels
+      height: 50px;
+  
+      input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+  
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: $green; // Default background
+        border-radius: 25px; // Rounded slider
+        transition: background-color 0.4s ease, box-shadow 0.4s ease;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 $padding-16; // Padding for labels
+  
+        .toggle-label {
+          font-size: 14px;
+          font-weight: bold;
+          text-transform: uppercase;
+          transition: color 0.4s ease, opacity 0.4s ease;
+          position: relative;
+          z-index: 2;
+  
+          &.left {
+            color: $green; // Default inactive label color
+            opacity: 1; // Fully visible by default
+          }
+  
+          &.right {
+            color: lighten($dark-brown, 90%);
+            opacity: 0.5; // Dimmed inactive state
+          }
+        }
+  
+        &::before {
+          content: "";
+          position: absolute;
+          height: 90%;
+          width: 50%; // Half the slider width
+          background-color: $off-white; // Knob color
+          border-radius: 20px;
+          left: 4px;
+          transition: transform 0.4s ease, background-color 0.4s ease;
+          box-shadow: 0 2px 4px rgba($dark-brown, 0.2);
+        }
+      }
+  
+      input:checked + .slider {
+        background-color: $green; // Active background
+  
+        .toggle-label.left {
+          color: lighten($off-white, 30%);
+          opacity: 0.5; // Dim inactive state
+        }
+  
+        .toggle-label.right {
+          color: $green; // Highlight active state
+          opacity: 1;
+        }
+  
+        &::before {
+          transform: translateX(95%); // Move the knob to the right
+          background-color: $off-white; // Knob active color
+        }
+      }
+  
+      input:focus + .slider {
+        box-shadow: 0 0 5px $green; // Focus outline
+      }
+    }
+  }
+  
+  // Responsive styling using mixins
+  @include tablet {
+    .toggle-bar {
+      justify-content: flex-start;
+    }
+  
+    .switch {
+      width: 180px; // Slightly larger toggle on tablets
+      height: 55px;
+  
+      .slider {
+        &::before {
+          height: 48px;
+          width: 90px; // Adjust knob width
+        }
+      }
+    }
+  }
+  
+  @include desktop {
+    .toggle-bar {
+      justify-content: space-between;
+    }
+  }
+  

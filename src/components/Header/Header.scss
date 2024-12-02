@@ -1,0 +1,93 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.header {
+  padding: $padding-16 $padding-32;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+
+  @include tablet {
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  @include desktop {
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  &__logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+
+    &-image {
+      width: 50%;
+    }
+
+    @include tablet {
+      justify-content: flex-start;
+      margin-bottom: 0;
+
+    }
+
+    @include desktop {
+      justify-content: flex-start;
+      margin-bottom: 0;
+
+    }
+  }
+
+  &__nav-list {
+    display: flex;
+    list-style: none;
+    gap: $padding-24;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__nav-link {
+    text-decoration: none;
+    color: $dark-brown;
+    font-size: 1rem;
+    font-weight: 300;
+    transition: color 0.3s ease, transform 0.2s ease;
+
+    &:hover {
+      text-decoration: underline;
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  @include tablet {
+    padding: $padding-16 $padding-48;
+
+    &__nav-list {
+      gap: $padding-32;
+    }
+
+    &__nav-link {
+      font-size: 1.2rem;
+    }
+  }
+
+  @include desktop {
+    padding: $padding-24 $padding-64;
+
+    &__nav-list {
+      gap: $padding-40;
+    }
+
+    &__nav-link {
+      font-size: 1.2rem;
+    }
+  }
+}

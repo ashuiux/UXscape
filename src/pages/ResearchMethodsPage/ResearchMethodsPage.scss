@@ -1,0 +1,155 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.research-methods {
+  background-color: $off-white;
+
+  &__title {
+    font-size: 2.5rem;
+    color: $dark-brown;
+    margin-bottom: $padding-24;
+    text-align: center;
+  }
+
+  &__error {
+    color: $brown;
+    font-weight: bold;
+    text-align: center;
+    padding: $padding-16;
+    background-color: lighten($brown, 40%);
+    border-radius: 8px;
+    margin-bottom: $padding-24;
+  }
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: $padding-24;
+    padding: $padding-24;
+    margin-bottom: $padding-40;
+  }
+
+  &__empty {
+    text-align: center;
+    color: $dark-brown;
+    font-style: italic;
+    grid-column: 1 / -1;
+    padding: $padding-24;
+    background-color: $light-blue;
+    border-radius: 8px;
+  }
+
+  &__toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: $padding-32;
+  }
+
+  &__switch {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 300px;
+    height: 50px;
+  }
+
+  &__switch-input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    &:checked + .research-methods__slider {
+      background-color: $green;
+
+      .research-methods__toggle-label--left {
+        color: $off-white;
+        opacity: 0.5;
+      }
+
+      .research-methods__toggle-label--right {
+        color: $dark-brown;
+        opacity: 1;
+      }
+
+      &::before {
+        transform: translateX(calc(100% - 4px));
+        background-color: $off-white;
+      }
+    }
+
+    &:focus + .research-methods__slider {
+      box-shadow: 0 0 5px $green;
+    }
+  }
+
+  &__slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $light-green;
+    border-radius: 25px;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 $padding-16;
+
+    &::before {
+      content: "";
+      position: absolute;
+      height: 42px;
+      width: calc(50% - 4px);
+      background-color: $off-white;
+      border-radius: 21px;
+      left: 4px;
+      transition: all 0.4s ease;
+      box-shadow: 0 2px 4px rgba($dark-brown, 0.2);
+    }
+  }
+
+  &__toggle-label {
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 2;
+
+    &--left {
+      color: $dark-brown;
+      opacity: 1;
+    }
+
+    &--right {
+      color: $off-white;
+      opacity: 0.5;
+    }
+  }
+
+  @include tablet {
+    &__toggle {
+      justify-content: center;
+    }
+
+    &__switch {
+      width: 40%;
+    }
+  }
+
+  @include desktop {
+    &__title {
+      font-size: 3rem;
+    }
+
+    &__toggle {
+      justify-content: center;
+    }
+
+    &__switch {
+      width: 30%;
+    }
+  }
+}

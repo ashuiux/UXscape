@@ -1,0 +1,79 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+// Import Material Icons
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, $light-blue, $light-purple);
+  padding: $padding-24;
+
+  &__content {
+    text-align: center;
+    padding: $padding-32;
+    max-width: 500px;
+    width: 100%;
+  }
+
+  &__title {
+    font-size: clamp(3rem, 15vw, 8rem);
+    font-weight: bold;
+    margin: 0;
+    line-height: 1;
+  }
+
+  &__subtitle {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    margin-top: $padding-8;
+    margin-bottom: $padding-24;
+  }
+
+  &__text {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    line-height: 1.6;
+    margin-bottom: $padding-32;
+  }
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    gap: $padding-8;
+    background-color: $green;
+    color: $off-white;
+    text-decoration: none;
+    padding: $padding-16 $padding-24;
+    border-radius: 30px;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+      background-color: darken($green, 10%);
+      transform: translateY(-2px);
+    }
+
+    .material-icons {
+      font-size: 1.2em;
+    }
+  }
+
+  @include tablet {
+    padding: $padding-48;
+
+    &__content {
+      padding: $padding-48;
+    }
+  }
+
+  @include desktop {
+    padding: $padding-64;
+
+    &__content {
+      padding: $padding-64;
+    }
+  }
+}

@@ -59,68 +59,67 @@ function AddMethodForm({ onSubmit }) {
   };
 
   return (
-    <div className="form">
-        <h2 className="form__header">Add new research method</h2>
-    <form onSubmit={handleSubmit} className="add-method-form">
-      <label>
-        Name:
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          className={errorState.name ? "error" : ""}
-        />
-        {errorState.name && <span className="error-text">{errorState.name}</span>}
-      </label>
-      <label>
-        Description:
-        <textarea
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-          className={errorState.description ? "error" : ""}
-        />
-        {errorState.description && (
-          <span className="error-text">{errorState.description}</span>
-        )}
-      </label>
-      <label>
-        Design Type:
-        <select
-          name="design_type"
-          value={formData.design_type}
-          onChange={handleChange}
-        >
-          <option value="">Select...</option>
-          <option value="New Design">New Design</option>
-          <option value="Redesign">Redesign</option>
-          <option value="Both">Both</option>
-        </select>
-        {errorState.design_type && (
-          <span className="error-text">{errorState.design_type}</span>
-        )}
-      </label>
-      <label>
-        Use Cases (comma-separated):
-        <input
-          type="text"
-          name="use_cases"
-          value={formData.use_cases.join(", ")}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Project Types (comma-separated):
-        <input
-          type="text"
-          name="project_types"
-          value={formData.project_types.join(", ")}
-          onChange={handleChange}
-        />
-      </label>
-      <button type="submit">Add Method</button>
-    </form>
+    <div className="add-method">
+      <h2 className="add-method__header">Add new research method</h2>
+      <form onSubmit={handleSubmit} className="add-method__form">
+        <label className="add-method__label">
+          Name:
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            className={`add-method__input ${errorState.name ? "add-method__input--error" : ""}`}
+          />
+          {errorState.name && <span className="add-method__error">{errorState.name}</span>}
+        </label>
+        <label className="add-method__label">
+          Description:
+          <textarea
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            className={`add-method__textarea ${errorState.description ? "add-method__textarea--error" : ""}`}  />
+          {errorState.description && (
+            <span className="add-method__error">{errorState.description}</span>
+          )}
+        </label>
+        <label className="add-method__label">
+          Design Type:
+          <select
+            name="design_type"
+            value={formData.design_type}
+            onChange={handleChange}
+            className="add-method__select">
+            <option value="">Select...</option>
+            <option value="New Design">New Design</option>
+            <option value="Redesign">Redesign</option>
+            <option value="Both">Both</option>
+          </select>
+          {errorState.design_type && (
+            <span className="add-method__error">{errorState.design_type}</span>
+          )}
+        </label>
+        <label className="add-method__label">
+          Use Cases (comma-separated):
+          <input
+            type="text"
+            name="use_cases"
+            value={formData.use_cases.join(", ")}
+            onChange={handleChange}
+            className="add-method__input"/>
+        </label>
+        <label className="add-method__label">
+          Project Types (comma-separated):
+          <input
+            type="text"
+            name="project_types"
+            value={formData.project_types.join(", ")}
+            onChange={handleChange}
+            className="add-method__input"/>
+        </label>
+        <button type="submit" className="add-method__button">Add Method</button>
+      </form>
     </div>
   );
 }

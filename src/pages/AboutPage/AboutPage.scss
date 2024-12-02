@@ -1,0 +1,154 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+// Import Material Icons
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+.about {
+  color: $dark-brown;
+  background-color: $off-white;
+  padding: $padding-32;
+  margin: 0 auto;
+
+  &__header {
+    text-align: center;
+    margin-bottom: $padding-24;
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: $dark-brown;
+    margin-bottom: $padding-16;
+  }
+
+  &__tagline {
+    font-size: 1.2rem;
+    }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $padding-32;
+  }
+
+  &__section {
+    background-color: $biege;
+    border-radius: 16px;
+    padding: $padding-24;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba($dark-brown, 0.15);
+    }
+
+    &--overview {
+      background-color: rgba($leaf-green, 0.7);
+    }
+
+    &--problem {
+      background-color: rgba($light-blue, 0.7);
+    }
+
+    &--profile {
+      background-color: rgba($light-purple, 0.7);
+    }
+
+    &--features, &--tools {
+      flex: 1;
+    }
+  }
+
+  &__subtitle {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: $padding-16;
+    color: $dark-brown;
+    display: flex;
+    align-items: center;
+    gap: $padding-8;
+
+    .material-icons {
+      font-size: 2rem;
+      color: $green;
+    }
+  }
+
+  &__text {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: $padding-16;
+  }
+
+  &__image {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: $padding-16;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+
+  &__list {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  &__list-item {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: $padding-16;
+    display: flex;
+    align-items: center;
+    gap: $padding-8;
+
+    .material-icons {
+      color: $green;
+      font-size: 1.2rem;
+    }
+
+    strong {
+      color: $dark-brown;
+      margin-right: $padding-8;
+      font-weight: 600;
+    }
+  }
+
+  &__features {
+    display: flex;
+    flex-direction: column;
+    gap: $padding-24;
+  }
+
+  @include tablet {
+    padding: $padding-48;
+
+    &__title {
+      font-size: 1rem;
+    }
+
+    &__features {
+      flex-direction: row;
+    }
+  }
+
+  @include desktop {
+    padding: $padding-64;
+
+    &__title {
+      font-size: 2rem;
+    }
+
+    &__content {
+      flex-direction: column;
+      flex-wrap: wrap;
+    }
+
+    &__section {
+      flex-basis: calc(50% - #{$padding-16});
+    }
+  }
+}

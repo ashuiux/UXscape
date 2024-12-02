@@ -11,6 +11,9 @@
     margin: 0;
     box-sizing: border-box;
     background-color:  $off-white;
+    background: hsla(0, 0%, 92%, 0.1);
+  background-image: radial-gradient(rgb(51, 52, 52) 2%, transparent 0);
+  background-size: 30px 30px;
   }
   
   li {

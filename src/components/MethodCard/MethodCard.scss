@@ -1,6 +1,8 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixins" as *;
 
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
 .method-card {
   @for $i from 1 through 50 {
     &:nth-child(#{$i}) {
@@ -14,32 +16,106 @@
   padding: $padding-16;
   border-radius: 1rem 1rem 0 1rem;
 
-  h2 {
-    margin: 0 0 0.5rem;
-    color: $dark-brown; 
-  }
-
-  p {
-    color: $dark-brown; 
-  }
   &__header {
     padding-top: $padding-16;
   }
+
+  &__title {
+    margin: 0 0 0.5rem;
+    color: $dark-brown;
+  }
+
+  &__description {
+    color: $dark-brown;
+  }
+
   &__tags {
     margin-top: 1rem;
   }
 
-  &__usecase {
-    border-bottom: 1px solid $dark-brown;
+  &__tag {
     padding: $padding-8;
+    color: $dark-brown;
+
+    &--usecase,
+    &--project {
+      border-bottom: 1px solid $dark-brown;
+    }
   }
 
-  &__project {
-    border-bottom: 1px solid $dark-brown;
-    padding: $padding-8;
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: $padding-16;
+    margin-top: $padding-24;
   }
 
-  &__designs {
-    padding: $padding-8;
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
+    border: none;
+    background-color: transparent;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+
+    &--edit {
+      color: $dark-brown;
+      opacity: .5;
+
+      &:hover {
+        background-color: rgba($green, 0.1);
+        color: $green;
+        opacity: 1;
+      }
+    }
+
+    &--delete {
+      color: $dark-brown;
+      opacity: .5;
+
+      &:hover {
+        background-color: rgba($brown, 0.1);
+        color: $brown;
+        opacity: 1;
+      }
+    }
+
+    .material-icons {
+      font-size: 1.5rem;
+    }
+  }
+
+  @include tablet {
+    &__buttons {
+      gap: $padding-24;
+    }
+  }
+
+  @include desktop {
+    &__buttons {
+      justify-content: flex-end;
+    }
+
+    &__button {
+      width: 48px;
+      height: 48px;
+
+      .material-icons {
+        font-size: 1.8rem;
+      }
+    }
   }
 }

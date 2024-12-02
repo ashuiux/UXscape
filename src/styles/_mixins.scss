@@ -17,6 +17,6 @@
 
 
   @mixin rotate-color($index) {
-    color: nth($colors, $index % length($colors) + 1); // Rotate color based on the index
-    background-color: nth($colors, $index % length($colors) + 1); // Apply background color
+    color: nth($colors, $index % length($colors) + 1); 
+    background-color: nth($colors, $index % length($colors) + 1); 
   }

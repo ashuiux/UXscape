@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import "./MethodCard.scss";
+import Modal from "../Modal/Modal";
 
-function MethodCard({ method }) {
+const MethodCard = ({ method, onDelete }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleDeleteClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    try {
+      await onDelete(method.id);
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error('Failed to delete method:', error);
+    }
+  };
+
   return (
     <div className="method-card">
       <div className="method-card__header">
@@ -17,10 +33,16 @@ function MethodCard({ method }) {
         <button className="method-card__button method-card__button--edit" aria-label="Edit">
           <span className="material-icons">edit</span>
         </button>
-        <button className="method-card__button method-card__button--delete" aria-label="Delete">
+        <button className="method-card__button method-card__button--delete" aria-label="Delete" onClick={handleDeleteClick}>
           <span className="material-icons">delete</span>
         </button>
       </div>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={handleConfirmDelete}
+        message={`Are you sure you want to delete "${method.name}"?`}
+      />
     </div>
   );
 }

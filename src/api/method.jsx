@@ -28,6 +28,16 @@ const addMethod = async (newMethod) => {
   }
 };
 
+const deleteMethod = async () => {
+  try {
+    await deleteMethod(method.id);
+    onDelete(method.id);
+  } catch (error) {
+    console.error('Failed to delete method:', error);
+  }
+};
 
 
-export { getMethods, addMethod };
+
+
+export { getMethods, addMethod, deleteMethod};

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { getMethods, addMethod, deleteMethod } from "../../api/method";
+import { getMethods, addMethod, deleteMethod, updateMethod } from "../../api/method";
 import MethodCard from "../../components/MethodCard/MethodCard";
 import AddMethodForm from "../../components/AddMethod/AddMethod";
 import "./ResearchMethodsPage.scss";
@@ -54,6 +54,16 @@ function ResearchMethodsPage() {
     }
   }, []);
 
+  const handleEditMethod = useCallback(async (methodId, updatedMethod) => {
+    try {
+      const editedMethod = await updateMethod(methodId, updatedMethod);
+      setMethods(prevMethods => prevMethods.map(method => method.id === methodId ? editedMethod : method));
+      setFilteredMethods(prevMethods => prevMethods.map(method => method.id === methodId ? editedMethod : method));
+    } catch (error) {
+      console.error("Error editing method:", error);
+    }
+  }, []);
+
   return (
     <div className="research-methods">
       <h1 className="research-methods__title">Research Methods</h1>
@@ -85,6 +95,7 @@ function ResearchMethodsPage() {
               key={method.id}
               method={method}
               onDelete={handleDeleteMethod}
+              onEdit={handleEditMethod}
             />
           ))
         ) : (

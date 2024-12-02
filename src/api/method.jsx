@@ -2,8 +2,6 @@ import axios from "axios";
 
 
 const baseUrl = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
-console.log("Base URL:", baseUrl); // Log the baseUrl
-
 
 const getMethods = async () => {
   try {
@@ -37,7 +35,17 @@ const deleteMethod = async () => {
   }
 };
 
+const updateMethod = async (methodId, updatedMethod) => {
+  try {
+    const response = await axios.put(`${baseUrl}/methods/${methodId}`, updatedMethod, {
+      headers: { "Content-Type": "application/json" },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error updating method:', error.message);
+    throw new Error("Failed to update method");
+  }
+};
 
 
-
-export { getMethods, addMethod, deleteMethod};
+export { getMethods, addMethod, deleteMethod, updateMethod};

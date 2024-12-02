@@ -1,20 +1,35 @@
 import React, { useState } from "react";
 import "./MethodCard.scss";
 import Modal from "../Modal/Modal";
+import EditMethodForm from "../EditMethodForm/EditMethodForm";
 
-const MethodCard = ({ method, onDelete }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const MethodCard = ({ method, onDelete, onEdit }) => {
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const handleDeleteClick = () => {
-    setIsModalOpen(true);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleEditClick = () => {
+    setIsEditModalOpen(true);
   };
 
   const handleConfirmDelete = async () => {
     try {
       await onDelete(method.id);
-      setIsModalOpen(false);
+      setIsDeleteModalOpen(false);
     } catch (error) {
       console.error('Failed to delete method:', error);
+    }
+  };
+
+  const handleConfirmEdit = async (updatedMethod) => {
+    try {
+      await onEdit(method.id, updatedMethod);
+      setIsEditModalOpen(false);
+    } catch (error) {
+      console.error('Failed to edit method:', error);
     }
   };
 
@@ -30,7 +45,7 @@ const MethodCard = ({ method, onDelete }) => {
         <p className="method-card__tag method-card__tag--designs">{method.design_type}</p>
       </div>
       <div className="method-card__buttons">
-        <button className="method-card__button method-card__button--edit" aria-label="Edit">
+        <button className="method-card__button method-card__button--edit" aria-label="Edit" onClick={handleEditClick}>
           <span className="material-icons">edit</span>
         </button>
         <button className="method-card__button method-card__button--delete" aria-label="Delete" onClick={handleDeleteClick}>
@@ -38,11 +53,25 @@ const MethodCard = ({ method, onDelete }) => {
         </button>
       </div>
       <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onConfirm={handleConfirmDelete}
-        message={`Are you sure you want to delete "${method.name}"?`}
-      />
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+      >
+        <p>Are you sure you want to delete "{method.name}"?</p>
+        <div className="modal-buttons">
+          <button onClick={handleConfirmDelete} className="confirm-button">Confirm</button>
+          <button onClick={() => setIsDeleteModalOpen(false)} className="cancel-button">Cancel</button>
+        </div>
+      </Modal>
+      <Modal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+      >
+        <EditMethodForm
+          method={method}
+          onSubmit={handleConfirmEdit}
+          onCancel={() => setIsEditModalOpen(false)}
+        />
+      </Modal>
     </div>
   );
 }

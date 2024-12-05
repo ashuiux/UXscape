@@ -20,7 +20,7 @@ const MethodCard = ({ method, onDelete, onEdit }) => {
       await onDelete(method.id);
       setIsDeleteModalOpen(false);
     } catch (error) {
-      console.error('Failed to delete method:', error);
+      console.error("Failed to delete method:", error);
     }
   };
 
@@ -29,9 +29,17 @@ const MethodCard = ({ method, onDelete, onEdit }) => {
       await onEdit(method.id, updatedMethod);
       setIsEditModalOpen(false);
     } catch (error) {
-      console.error('Failed to edit method:', error);
+      console.error("Failed to edit method:", error);
     }
   };
+
+  // Parse `use_cases` and `project_types` safely
+  const useCases = Array.isArray(method.use_cases)
+    ? method.use_cases
+    : JSON.parse(method.use_cases || "[]");
+  const projectTypes = Array.isArray(method.project_types)
+    ? method.project_types
+    : JSON.parse(method.project_types || "[]");
 
   return (
     <div className="method-card">
@@ -40,15 +48,29 @@ const MethodCard = ({ method, onDelete, onEdit }) => {
         <p className="method-card__description">{method.description}</p>
       </div>
       <div className="method-card__tags">
-        <p className="method-card__tag method-card__tag--usecase">{method.use_cases}</p>
-        <p className="method-card__tag method-card__tag--project">{method.project_types}</p>
-        <p className="method-card__tag method-card__tag--designs">{method.design_type}</p>
+        <p className="method-card__tag method-card__tag--usecase">
+          Use Cases: {useCases.join(", ")}
+        </p>
+        <p className="method-card__tag method-card__tag--project">
+          Project Types: {projectTypes.join(", ")}
+        </p>
+        <p className="method-card__tag method-card__tag--designs">
+          Design Type: {method.design_type}
+        </p>
       </div>
       <div className="method-card__buttons">
-        <button className="method-card__button method-card__button--edit" aria-label="Edit" onClick={handleEditClick}>
+        <button
+          className="method-card__button method-card__button--edit"
+          aria-label="Edit"
+          onClick={handleEditClick}
+        >
           <span className="material-icons">edit</span>
         </button>
-        <button className="method-card__button method-card__button--delete" aria-label="Delete" onClick={handleDeleteClick}>
+        <button
+          className="method-card__button method-card__button--delete"
+          aria-label="Delete"
+          onClick={handleDeleteClick}
+        >
           <span className="material-icons">delete</span>
         </button>
       </div>
@@ -58,8 +80,15 @@ const MethodCard = ({ method, onDelete, onEdit }) => {
       >
         <p>Are you sure you want to delete "{method.name}"?</p>
         <div className="modal-buttons">
-          <button onClick={handleConfirmDelete} className="confirm-button">Confirm</button>
-          <button onClick={() => setIsDeleteModalOpen(false)} className="cancel-button">Cancel</button>
+          <button onClick={handleConfirmDelete} className="confirm-button">
+            Confirm
+          </button>
+          <button
+            onClick={() => setIsDeleteModalOpen(false)}
+            className="cancel-button"
+          >
+            Cancel
+          </button>
         </div>
       </Modal>
       <Modal
@@ -74,6 +103,6 @@ const MethodCard = ({ method, onDelete, onEdit }) => {
       </Modal>
     </div>
   );
-}
+};
 
 export default MethodCard;

@@ -30,11 +30,12 @@ Choosing the right research method for a UX project can be challenging and time-
 
 ## User Stories
 
-- As a user, I want to browse research methods based on project criteria, so I can quickly find relevant techniques.
-- As a user, I want to add new research methods to the library, so I can contribute to the UX design community.
-- As a user, I want to update existing research methods to keep the content accurate and helpful.
-- As a user, I want to delete outdated research methods to maintain the quality of the library.
-- As a visitor, I want to explore research methods without needing an account, so the site is easily accessible.
+As a user,
+-  I want to browse research methods based on project criteria, so I can quickly find relevant techniques.
+-  I want to add new research methods to the library, so I can contribute to the UX design community.
+-  I want to update existing research methods to keep the content accurate and helpful.
+-  I want to delete outdated research methods to maintain the quality of the library.
+-  I want to explore research methods without needing an account, so the site is easily accessible.
 
 ## Implementation
 

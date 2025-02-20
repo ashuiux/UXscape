@@ -4,6 +4,12 @@
 
 **UXscape** is a web application designed to assist UX designers in selecting the most appropriate research methods for their projects. By leveraging CRUD functionality, UXscape enables users to add, browse, update, and delete research method recommendations. The platform aims to simplify the research process, saving designers from the overwhelming amount of scattered information available online.
 
+![Landing Page](/src/assets/uxscape.png)
+![Edit function](/src/assets/edit_function.png)
+![Delete function](/src/assets/delete_function.png)
+![Add function](/src/assets/add_function.png)
+
+
 ## Problem
 
 Choosing the right research method for a UX project can be challenging and time-consuming, especially with the vast amount of information available. UX designers often find themselves lost in a “rabbit hole” of data, making it difficult to make informed decisions efficiently. UXscape addresses this issue by providing a curated and easy-to-navigate platform, helping designers focus on what matters most.
@@ -49,10 +55,10 @@ Choosing the right research method for a UX project can be challenging and time-
 - **Edit Research Method**: A form for updating existing research method details.
 - **Delete Confirmation**: A simple UI for confirming method deletions.
 
-## Mockups
+## Wireframe
 
 - **Home Page**
-![Home Page Mockup](/src/assets/home.png)
+![Home Page Wireframe](/src/assets/home.png)
 
 ## Data Structure
 
